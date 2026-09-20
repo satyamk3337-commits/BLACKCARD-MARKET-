@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Card Market - Premium Virtual Card Platform (All-In-One)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      background-color: #070a12;
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .cyber-grid-bg {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .font-card {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.12em;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070a12; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
+</head>
+<body class="bg-[#070a12] cyber-grid-bg min-h-screen flex flex-col text-slate-100">
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-[100] pointer-events-none transition-all duration-300 opacity-0 -translate-y-4">
+    <div id="toast-text" class="px-4 py-2.5 rounded-2xl bg-purple-900/95 text-white font-bold text-xs shadow-2xl border border-purple-400/60 backdrop-blur-md"></div>
+  </div>
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-[#070a12]/90 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-700 via-indigo-600 to-amber-500 p-0.5 shadow-lg shadow-purple-900/40">
+          <div class="w-full h-full bg-[#090d18] rounded-[10px] flex items-center justify-center">
+            <span class="text-white font-black text-sm">BC</span>
+          </div>
+        </div>
+        <div>
+          <span class="font-extrabold text-white text-sm sm:text-base tracking-wide flex items-center gap-1.5">
+            BLACK CARD <span class="text-purple-400 font-normal">MARKET</span>
+          </span>
+          <span class="text-[9px] text-slate-400 block -mt-0.5 font-mono">ENCRYPTED VIRTUAL ESCROW</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="openModal('support-modal')" class="px-3 py-1.5 rounded-xl bg-sky-950/60 hover:bg-sky-900/60 border border-sky-800/80 text-sky-300 text-xs font-bold flex items-center gap-1.5 transition-all">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+          <span class="hidden sm:inline">Support:</span>
+          <span id="nav-tg-handle" class="font-mono">@lottaygent</span>
+        </button>
+
+        <button onclick="openOrdersModal()" class="relative px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-all">
+          <span>📦 Orders</span>
+          <span id="nav-order-badge" class="px-1.5 py-0.2 rounded-full bg-purple-600 text-white font-mono text-[10px] font-bold">0</span>
+        </button>
+
+        <button onclick="openAdminLoginModal()" class="px-3.5 py-1.5 rounded-xl bg-amber-950/60 hover:bg-amber-900/70 border border-amber-600/70 text-amber-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm">
+          <span>🔐 ADMIN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-10 pb-8 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/70 border border-purple-800 text-purple-300 text-[11px] font-semibold mb-4">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+      <span>Instant 16-Digit Delivery with UPI Verification</span>
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-3">
+      Premium <span class="bg-gradient-to-r from-purple-400 via-indigo-300 to-amber-300 bg-clip-text text-transparent">Virtual Credit & Debit</span> Cards
+    </h1>
+    <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto mb-6 leading-relaxed">
+      Preloaded international Visa, Mastercard & RuPay virtual cards. Automated escrow issuance within 5-10 minutes with instant UTR verification & official Telegram support.
+    </p>
+    <div class="flex items-center justify-center gap-3">
+      <a href="#store-catalog" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-950/60 transition-all">
+        Explore Cards Catalog ↓
+      </a>
+      <button onclick="openModal('support-modal')" class="px-4 py-2.5 rounded-xl bg-[#0e1628] hover:bg-[#152038] border border-slate-700 text-slate-300 font-semibold text-xs flex items-center gap-2 transition-all">
+        <span>Telegram Support</span>
+        <span id="hero-tg-handle" class="text-sky-400 font-mono">@lottaygent</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- MAIN CATALOG -->
+  <main id="store-catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+    <!-- Filter Bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3 mb-6 bg-[#090e1a] border border-slate-800 p-3 rounded-2xl">
+      <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
+        <button onclick="setCategoryFilter('ALL')" id="cat-btn-ALL" class="cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-600 text-white">All Cards</button>
+        <button onclick="setCategoryFilter('Infinite Black')" id="cat-btn-Infinite Black" class="cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-slate-900/70 border border-slate-800">Infinite Black</button>
+        <button onclick="setCategoryFilter('Platinum Credit')" id="cat-btn-Platinum Credit" class="cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-slate-900/70 border border-slate-800">Platinum Credit</button>
+        <button onclick="setCategoryFilter('Commercial Business')" id="cat-btn-Commercial Business" class="cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-slate-900/70 border border-slate-800">Commercial</button>
+      </div>
+
+      <div class="flex items-center gap-2 w-full md:w-auto">
+        <input id="search-input" oninput="renderCards()" type="text" placeholder="Search card, bank, or limit..." class="w-full md:w-64 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-purple-500" />
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+  <!-- HOW IT WORKS -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    <div class="rounded-3xl bg-[#090e1a]/95 border border-slate-800 p-6 text-center">
+      <h3 class="text-xl font-black text-white mb-2">Automated Virtual Card Escrow</h3>
+      <p class="text-xs text-slate-400 mb-6">Simple 4-Step Process to get your virtual card credentials</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+        <div class="p-4 bg-[#0c1220] rounded-2xl border border-slate-800">
+          <div class="text-purple-400 font-bold text-xs mb-1">01. Select Package</div>
+          <p class="text-xs text-slate-400">Choose card limit and preloaded balance as per your requirements.</p>
+        </div>
+        <div class="p-4 bg-[#0c1220] rounded-2xl border border-slate-800">
+          <div class="text-purple-400 font-bold text-xs mb-1">02. Scan & Pay</div>
+          <p class="text-xs text-slate-400">Pay via active UPI QR on GPay, PhonePe, Paytm or BHIM UPI.</p>
+        </div>
+        <div class="p-4 bg-[#0c1220] rounded-2xl border border-slate-800">
+          <div class="text-purple-400 font-bold text-xs mb-1">03. Submit 12-Digit UTR</div>
+          <p class="text-xs text-slate-400">Enter bank transaction UTR/Ref number for immediate verification.</p>
+        </div>
+        <div class="p-4 bg-[#0c1220] rounded-2xl border border-slate-800">
+          <div class="text-purple-400 font-bold text-xs mb-1">04. Unblock Credentials</div>
+          <p class="text-xs text-slate-400">Instantly reveal 16-digit card number, CVV, expiry, PIN and receipt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-[#050811] border-t border-slate-900 py-6 px-4 text-xs text-slate-400 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-white">BLACK CARD MARKET</span>
+        <span>• © 2026 Virtual Cards Marketplace</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <button onclick="openModal('support-modal')" class="text-cyan-300 hover:underline">Telegram Support</button>
+        <button onclick="openAdminLoginModal()" class="text-amber-400 hover:underline font-bold">🔐 Admin Portal</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING TELEGRAM -->
+  <div class="fixed bottom-5 right-5 z-40">
+    <button onclick="openModal('support-modal')" class="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 text-white shadow-xl shadow-sky-950/60 border border-sky-300/30">
+      <span class="font-bold text-xs">Telegram Support</span>
+      <span id="float-tg-handle" class="text-[11px] font-mono opacity-90">@lottaygent</span>
+    </button>
+  </div>
+
+  <!-- MODAL: CHECKOUT -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/85 backdrop-blur-md hidden">
+    <div class="relative w-full max-w-lg bg-[#090e1a] border border-slate-700 rounded-3xl p-6 text-slate-200 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('checkout-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">✕</button>
+      
+      <div class="text-center mb-4">
+        <span class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">ESCROW SECURE CHECKOUT</span>
+        <h3 id="checkout-title" class="text-lg font-black text-white">Visa Infinite Black</h3>
+        <p class="text-xs text-slate-400">Scan QR or copy UPI ID to complete payment</p>
+      </div>
+
+      <!-- Price & Balance Tag -->
+      <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs mb-4">
+        <div>
+          <span class="text-slate-400 block text-[10px]">Preloaded Limit:</span>
+          <span id="checkout-balance" class="text-emerald-400 font-mono font-bold text-sm">₹75,000</span>
+        </div>
+        <div class="text-right">
+          <span class="text-slate-400 block text-[10px]">Total Due:</span>
+          <span id="checkout-price" class="text-amber-400 font-mono font-black text-lg">₹1,899</span>
+        </div>
+      </div>
+
+      <!-- QR Display -->
+      <div class="flex flex-col items-center p-4 bg-[#0c1220] rounded-2xl border border-slate-800 text-center mb-4">
+        <span class="text-[11px] font-bold text-slate-300 mb-2">Scan with Any UPI App:</span>
+        <div class="p-3 bg-white rounded-2xl shadow-xl w-48 h-48 flex items-center justify-center border border-slate-300">
+          <div id="checkout-qr-wrapper" class="w-full h-full flex items-center justify-center"></div>
+        </div>
+        <div class="mt-3 flex items-center gap-2">
+          <span class="text-xs text-slate-400">UPI ID:</span>
+          <span id="checkout-upi-id" class="text-xs font-mono font-bold text-emerald-400">pay@okaxis</span>
+          <button onclick="copyCurrentUpiId()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-[10px] text-slate-300">Copy</button>
+        </div>
+        <a id="checkout-upi-intent" href="#" class="mt-2 text-xs text-purple-400 hover:underline font-bold">Pay Directly via UPI App ➔</a>
+      </div>
+
+      <!-- Payment Submission Form -->
+      <form onsubmit="handleOrderSubmit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Your Full Name / Cardholder:</label>
+          <input id="order-user-name" type="text" required value="Raja Rajput" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-purple-500 font-medium" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Customer Phone or Telegram Username:</label>
+          <input id="order-contact" type="text" required placeholder="+91 9876543210 or @username" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-purple-500 font-mono" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Bank 12-Digit UTR / Transaction Ref ID:</label>
+          <input id="order-utr" type="text" required minlength="8" maxlength="16" placeholder="e.g. 423871920384" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-amber-300 focus:outline-none focus:border-purple-500 font-mono font-bold tracking-wider" />
+          <span class="text-[10px] text-slate-500 mt-1 block">Found in Google Pay, PhonePe, or Paytm payment receipt</span>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 cursor-pointer">
+          Submit Payment for Verification & Delivery ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ORDERS & CARD CREDENTIALS -->
+  <div id="orders-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/85 backdrop-blur-md hidden">
+    <div class="relative w-full max-w-2xl bg-[#090e1a] border border-slate-700 rounded-3xl p-6 text-slate-200 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('orders-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">✕</button>
+      <h3 class="text-lg font-black text-white mb-1">My Orders & Virtual Cards</h3>
+      <p class="text-xs text-slate-400 mb-4">View issued card credentials, CVV, expiry & download receipts.</p>
+      
+      <div id="orders-list-container" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: SUPPORT DESK -->
+  <div id="support-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/85 backdrop-blur-md hidden">
+    <div class="relative w-full max-w-md bg-[#090e1a] border border-slate-700 rounded-3xl p-6 text-slate-200 text-center shadow-2xl">
+      <button onclick="closeModal('support-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">✕</button>
+      <div class="w-12 h-12 rounded-2xl bg-sky-950 border border-sky-800 text-sky-300 flex items-center justify-center text-xl mx-auto mb-3">🎧</div>
+      <h3 class="text-lg font-black text-white mb-1">Live Customer Support</h3>
+      <p id="support-desk-notice" class="text-xs text-slate-400 mb-4 leading-relaxed"></p>
+
+      <div class="p-3.5 rounded-2xl bg-[#0c1220] border border-slate-800 text-left text-xs space-y-2.5 mb-4">
+        <div class="flex justify-between">
+          <span class="text-slate-400">Telegram Channel:</span>
+          <span id="support-tg-text" class="text-sky-400 font-mono font-bold">@lottaygent</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Support Email:</span>
+          <span id="support-email-text" class="text-slate-200 font-mono text-[11px]">support@blackcardmarket.io</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Helpline / Phone:</span>
+          <span id="support-phone-text" class="text-slate-200 font-mono">+91 98765 43210</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Response SLA:</span>
+          <span class="text-emerald-400 font-bold">&lt; 3 Minutes</span>
+        </div>
+      </div>
+
+      <a id="support-tg-btn" href="https://t.me/lottaygent" target="_blank" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+        Open Telegram: <span id="support-tg-btn-label">@lottaygent</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN LOGIN -->
+  <div id="admin-login-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/85 backdrop-blur-md hidden">
+    <div class="relative w-full max-w-xs bg-[#090e1a] border border-amber-600/60 rounded-3xl p-5 sm:p-6 text-slate-200 shadow-2xl">
+      <button onclick="closeModal('admin-login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">✕</button>
+      
+      <h3 class="text-sm sm:text-base font-black text-white text-center mb-4 tracking-wider uppercase">ENTER PASSWORD</h3>
+
+      <form onsubmit="event.preventDefault(); handleAdminLogin(event); return false;" class="space-y-3.5">
+        <div>
+          <div class="relative">
+            <input id="admin-login-password" type="password" required placeholder="Enter password..." onkeydown="if(event.key==='Enter'){event.preventDefault(); handleAdminLogin(event); return false;}" class="w-full px-3.5 py-2.5 pr-10 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-amber-500 font-mono tracking-wider" />
+            <button type="button" onclick="togglePasswordVisibility('admin-login-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs p-1 cursor-pointer">
+              👁️
+            </button>
+          </div>
+          <div id="admin-login-error" class="text-red-400 text-[11px] mt-1.5 font-semibold text-center hidden"></div>
+        </div>
+
+        <button type="button" onclick="handleAdminLogin(event)" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-black font-black text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer">
+          LOGIN
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN DASHBOARD -->
+  <div id="admin-dashboard-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/90 backdrop-blur-md hidden">
+    <div class="relative w-full max-w-4xl bg-[#090e1a] border border-amber-600/70 rounded-3xl p-5 sm:p-7 text-slate-200 my-auto shadow-2xl max-h-[92vh] overflow-y-auto">
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-950 border border-amber-600 text-amber-300 flex items-center justify-center font-black text-lg">👑</div>
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-white">ADMIN CONTROL PANEL</h3>
+            <div class="text-[10px] text-amber-400 font-bold">Authorized Admin Session • Live Storage Synced</div>
+          </div>
+        </div>
+        <button onclick="closeModal('admin-dashboard-modal')" class="text-slate-400 hover:text-white p-1">✕</button>
+      </div>
+
+      <!-- Navigation Tabs (QR & UPI is FIRST) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-slate-800 mb-5">
+        <button onclick="setAdminTab('QR_UPI')" id="atab-QR_UPI" class="atab px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black whitespace-nowrap">⚡ QR & UPI CHANGE</button>
+        <button onclick="setAdminTab('PAYMENTS')" id="atab-PAYMENTS" class="atab px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-300 bg-slate-900 whitespace-nowrap">Payment Verification</button>
+        <button onclick="setAdminTab('SUPPORT_TG')" id="atab-SUPPORT_TG" class="atab px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-300 bg-slate-900 whitespace-nowrap">Support & TG</button>
+        <button onclick="setAdminTab('CARDS')" id="atab-CARDS" class="atab px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-300 bg-slate-900 whitespace-nowrap">Cards</button>
+        <button onclick="setAdminTab('SECURITY')" id="atab-SECURITY" class="atab px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-300 bg-slate-900 whitespace-nowrap">Security</button>
+      </div>
+
+      <!-- TAB 1: QR & UPI (DEFAULT ACTIVE) -->
+      <div id="admin-sec-QR_UPI" class="space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <span>⚡ QR CODE & UPI ID CHANGE</span>
+          </h4>
+          <p class="text-xs text-slate-400">Upload your payment QR image or update UPI ID to receive customer payments instantly.</p>
+        </div>
+
+        <form onsubmit="saveUpiSettings(event)" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="space-y-3.5">
+            <!-- QR Image Upload Box -->
+            <div class="p-3.5 bg-[#0c1220] rounded-2xl border border-amber-600/40 space-y-2">
+              <label class="block text-xs font-bold text-amber-300">📷 Upload New QR Image (Gallery / Camera):</label>
+              <input id="admin-qr-file" type="file" accept="image/*" onchange="handleAdminQrFile(event)" class="w-full text-xs text-slate-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-black hover:file:bg-amber-500 cursor-pointer" />
+              <div class="flex items-center justify-between pt-1">
+                <span id="admin-qr-status-text" class="text-[11px] text-slate-400">Mode: Auto UPI QR</span>
+                <button type="button" onclick="adminResetToAutoQr()" class="text-[11px] text-red-400 hover:underline">Reset to Auto QR</button>
+              </div>
+            </div>
+
+            <!-- UPI ID Change -->
+            <div>
+              <label class="block text-xs text-slate-300 mb-1 font-semibold">UPI ID (e.g. yourname@okhdfcbank):</label>
+              <input id="admin-upi-id" type="text" required oninput="renderAdminQrPreview()" class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-emerald-300 font-mono font-bold" />
+            </div>
+
+            <!-- Payee Name -->
+            <div>
+              <label class="block text-xs text-slate-300 mb-1 font-semibold">Payee Display Name:</label>
+              <input id="admin-payee-name" type="text" required class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white" />
+            </div>
+
+            <!-- Mode Selector -->
+            <div>
+              <label class="block text-xs text-slate-300 mb-1 font-semibold">QR Code Type:</label>
+              <select id="admin-qr-mode" onchange="toggleAdminQrMode()" class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                <option value="auto_upi">Auto Dynamic UPI QR (Amount Encoded)</option>
+                <option value="custom_image">Custom Uploaded QR Image</option>
+              </select>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-black font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-950/50 cursor-pointer">
+              💾 SAVE QR & UPI NOW
+            </button>
+          </div>
+
+          <!-- QR Live Preview -->
+          <div class="flex flex-col items-center justify-center p-4 bg-[#0c1220] rounded-2xl border border-slate-800 text-center">
+            <span class="text-[11px] text-amber-300 uppercase font-bold mb-2">Live Customer QR Preview</span>
+            <div class="p-3 bg-white rounded-2xl w-48 h-48 flex items-center justify-center shadow-xl border border-slate-300">
+              <div id="admin-qr-preview-box" class="w-full h-full flex items-center justify-center"></div>
+            </div>
+            <div class="mt-2 text-[11px] text-slate-400">
+              This QR code will be shown to customers on checkout.
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- TAB 2: PAYMENTS -->
+      <div id="admin-sec-PAYMENTS" class="space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm font-bold text-white">Incoming Orders & UTR Approvals</h4>
+          <button onclick="adminVerifyAllPending()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs">Verify All Pending</button>
+        </div>
+        <div id="admin-orders-table" class="space-y-3 max-h-[55vh] overflow-y-auto pr-1"></div>
+      </div>
+
+      <!-- TAB 3: SUPPORT & TELEGRAM -->
+      <div id="admin-sec-SUPPORT_TG" class="space-y-4 hidden">
+        <h4 class="text-sm font-bold text-white">Customer Support & Telegram Settings</h4>
+        <form onsubmit="saveSupportSettings(event)" class="space-y-3 max-w-lg">
+          <div>
+            <label class="block text-xs text-slate-300 mb-1 font-semibold">Telegram Handle (@username):</label>
+            <input id="admin-tg-handle" type="text" required class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-300 mb-1 font-semibold">Telegram Direct Link (https://t.me/...):</label>
+            <input id="admin-tg-url" type="url" required class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-300 mb-1 font-semibold">Support Desk Email:</label>
+            <input id="admin-support-email" type="email" required class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-300 mb-1 font-semibold">Helpline Phone / WhatsApp:</label>
+            <input id="admin-support-phone" type="text" class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-300 mb-1 font-semibold">Customer Announcement Notice:</label>
+            <textarea id="admin-support-notice" rows="2" class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white"></textarea>
+          </div>
+          <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-black font-bold text-xs uppercase">Save Support Settings</button>
+        </form>
+      </div>
+
+      <!-- TAB 4: CARDS INVENTORY -->
+      <div id="admin-sec-CARDS" class="space-y-4 hidden">
+        <h4 class="text-sm font-bold text-white">Cards Inventory</h4>
+        <div id="admin-cards-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[55vh] overflow-y-auto"></div>
+      </div>
+
+      <!-- TAB 5: SECURITY -->
+      <div id="admin-sec-SECURITY" class="space-y-4 hidden">
+        <h4 class="text-sm font-bold text-white">Admin Security Settings</h4>
+        <form onsubmit="saveSecuritySettings(event)" class="space-y-3 max-w-md">
+          <div>
+            <label class="block text-xs text-slate-300 mb-1 font-semibold">Change Master Password:</label>
+            <input id="admin-new-password" type="password" placeholder="Enter new password (min 4 characters)..." class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white font-mono" />
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-900 rounded-xl border border-slate-800">
+            <div>
+              <span class="text-xs font-bold text-white block">Auto-Approval Mode</span>
+              <span class="text-[10px] text-slate-400">Automatically verifies payments in 5 seconds</span>
+            </div>
+            <input id="admin-auto-mode" type="checkbox" class="w-4 h-4 accent-amber-500" />
+          </div>
+          <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-black font-bold text-xs uppercase">Save Security Settings</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC IN PLAIN JAVASCRIPT -->
+  <script>
+    // INITIAL STATE
+    const DEFAULT_SETTINGS = {
+      upiId: 'pay@okaxis',
+      payeeName: 'BLACK CARD ENTERPRISE',
+      upiRemark: 'BCM-VIRTUAL-CARD',
+      qrMode: 'auto_upi',
+      customQrImageUrl: '',
+      telegramHandle: '@lottaygent',
+      telegramUrl: 'https://t.me/lottaygent',
+      supportEmail: 'support@blackcardmarket.io',
+      supportPhone: '+91 98765 43210',
+      supportHours: '24/7 Priority Response Desk (< 3 Mins)',
+      supportNotice: 'Connect via official Telegram for fastest card delivery, limits change & custom BIN requests.',
+      adminPassword: 'RAJAJI',
+      autoApprovalMode: false
+    };
+
+    const DEFAULT_CARDS = [
+      {
+        id: 'bc-01',
+        title: 'Visa Infinite Black Obsidian',
+        bank: 'HDFC Priority Bank',
+        type: 'VISA',
+        category: 'Infinite Black',
+        balance: 75000,
+        price: 1899,
+        originalPrice: 3499,
+        features: ['International Forex Enabled', 'Instant Auto-OTP Relay', 'Zero Conversion Fee', 'Works on AWS & Google Cloud'],
+        cardholder: 'RAJA RAJPUT',
+        cardNumberPreview: '4532 •••• •••• 9912',
+        defaultCardNumber: '4532 8821 9043 9912',
+        defaultCvv: '482',
+        defaultExpiry: '11/29',
+        defaultPin: '7821',
+        badge: 'BESTSELLER'
+      },
+      {
+        id: 'bc-02',
+        title: 'Mastercard World Elite Dark Titan',
+        bank: 'Axis Burgundy Private',
+        type: 'MASTERCARD',
+        category: 'Infinite Black',
+        balance: 150000,
+        price: 2999,
+        originalPrice: 5999,
+        features: ['₹1.5 Lakh Preloaded Limit', 'Global 3DS Supported', 'Apple Pay & GPay Friendly', 'High Merchant Acceptance'],
+        cardholder: 'RAJA RAJPUT',
+        cardNumberPreview: '5421 •••• •••• 4018',
+        defaultCardNumber: '5421 7712 3901 4018',
+        defaultCvv: '913',
+        defaultExpiry: '08/30',
+        defaultPin: '5590',
+        badge: 'HIGH LIMIT'
+      },
+      {
+        id: 'bc-03',
+        title: 'RuPay Platinum Select Ultra',
+        bank: 'State Bank of India (SBI)',
+        type: 'RUPAY',
+        category: 'Platinum Credit',
+        balance: 25000,
+        price: 799,
+        originalPrice: 1499,
+        features: ['Domestic & UPI Linked', 'Zero Markup on Indian Gateways', 'Instant Activation', 'Flat ₹25k Balance'],
+        cardholder: 'RAJA RAJPUT',
+        cardNumberPreview: '6074 •••• •••• 1150',
+        defaultCardNumber: '6074 3890 2210 1150',
+        defaultCvv: '320',
+        defaultExpiry: '05/28',
+        defaultPin: '1190',
+        badge: 'INSTANT'
+      },
+      {
+        id: 'bc-04',
+        title: 'Commercial Business Black Executive',
+        bank: 'ICICI Corporate Bank',
+        type: 'VISA',
+        category: 'Commercial Business',
+        balance: 350000,
+        price: 5499,
+        originalPrice: 9999,
+        features: ['High Ticket Bulk Ad Spends', 'Facebook & Google Ads Ready', 'Dedicated BIN Range', 'Unlimited Auto Reloads'],
+        cardholder: 'RAJA RAJPUT',
+        cardNumberPreview: '4912 •••• •••• 8841',
+        defaultCardNumber: '4912 5501 3290 8841',
+        defaultCvv: '607',
+        defaultExpiry: '03/31',
+        defaultPin: '9044',
+        badge: 'BUSINESS'
+      }
+    ];
+
+    // Local Storage Loading
+    let settings = JSON.parse(localStorage.getItem('bcm_settings_standalone')) || DEFAULT_SETTINGS;
+    let cards = JSON.parse(localStorage.getItem('bcm_cards_standalone')) || DEFAULT_CARDS;
+    let orders = JSON.parse(localStorage.getItem('bcm_orders_standalone')) || [];
+    let activeCategory = 'ALL';
+    let selectedCheckoutCard = null;
+
+    function saveState() {
+      localStorage.setItem('bcm_settings_standalone', JSON.stringify(settings));
+      localStorage.setItem('bcm_cards_standalone', JSON.stringify(cards));
+      localStorage.setItem('bcm_orders_standalone', JSON.stringify(orders));
+      syncUiSettings();
+    }
+
+    function triggerConfetti(opts) {
+      if (typeof confetti === 'function') {
+        try {
+          confetti(opts || { particleCount: 70, spread: 80 });
+        } catch (ign) {}
+      }
+    }
+
+    function showToast(text) {
+      const container = document.getElementById('toast-container');
+      const msg = document.getElementById('toast-text');
+      msg.textContent = text;
+      container.classList.remove('opacity-0', '-translate-y-4');
+      container.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        container.classList.remove('opacity-100', 'translate-y-0');
+        container.classList.add('opacity-0', '-translate-y-4');
+      }, 3000);
+    }
+
+    function syncUiSettings() {
+      // Navbar & Hero Telegram handles
+      document.getElementById('nav-tg-handle').textContent = settings.telegramHandle;
+      document.getElementById('hero-tg-handle').textContent = settings.telegramHandle;
+      document.getElementById('float-tg-handle').textContent = settings.telegramHandle;
+      document.getElementById('support-tg-text').textContent = settings.telegramHandle;
+      document.getElementById('support-tg-btn-label').textContent = settings.telegramHandle;
+      document.getElementById('support-tg-btn').href = settings.telegramUrl;
+      document.getElementById('support-email-text').textContent = settings.supportEmail;
+      document.getElementById('support-phone-text').textContent = settings.supportPhone || 'N/A';
+      document.getElementById('support-desk-notice').textContent = settings.supportNotice;
+      document.getElementById('nav-order-badge').textContent = orders.length;
+    }
+
+    // RENDER CARDS
+    function setCategoryFilter(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('bg-purple-600', 'text-white');
+        btn.classList.add('text-slate-400', 'bg-slate-900/70', 'border', 'border-slate-800');
+      });
+      const activeBtn = document.getElementById('cat-btn-' + cat);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-400', 'bg-slate-900/70', 'border', 'border-slate-800');
+        activeBtn.classList.add('bg-purple-600', 'text-white');
+      }
+      renderCards();
+    }
+
+    function renderCards() {
+      const query = (document.getElementById('search-input')?.value || '').toLowerCase();
+      const grid = document.getElementById('cards-grid');
+      grid.innerHTML = '';
+
+      const filtered = cards.filter(c => {
+        const matchesCat = activeCategory === 'ALL' || c.category === activeCategory;
+        const matchesQuery = c.title.toLowerCase().includes(query) || c.bank.toLowerCase().includes(query) || c.type.toLowerCase().includes(query);
+        return matchesCat && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="col-span-3 text-center py-12 text-slate-500 text-sm">No cards found matching your search.</div>';
+        return;
+      }
+
+      filtered.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'rounded-3xl bg-[#090e1a] border border-slate-800 p-5 flex flex-col justify-between hover:border-purple-600/50 transition-all';
+        div.innerHTML = `
+          <div>
+            <div class="rounded-2xl bg-gradient-to-br from-slate-900 via-purple-950/40 to-black p-4 border border-slate-700/80 mb-4 shadow-xl">
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <span class="text-[9px] uppercase tracking-wider text-purple-300 font-bold">${c.bank}</span>
+                  <div class="text-xs font-black text-white">${c.title}</div>
+                </div>
+                <span class="px-2 py-0.5 rounded-full bg-purple-900/70 text-purple-200 text-[10px] font-bold">${c.badge || 'CARD'}</span>
+              </div>
+              <div class="font-card text-white text-base tracking-widest mb-3">${c.cardNumberPreview}</div>
+              <div class="flex justify-between items-center text-[10px] text-slate-400">
+                <span>${c.cardholder}</span>
+                <span class="font-bold text-amber-300">${c.type}</span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 mb-4 text-xs">
+              <div class="flex justify-between text-slate-400">
+                <span>Preloaded Balance:</span>
+                <span class="text-emerald-400 font-bold font-mono">₹${c.balance.toLocaleString('en-IN')}</span>
+              </div>
+              <div class="flex justify-between text-slate-400">
+                <span>Network:</span>
+                <span class="text-slate-200">${c.type} Verified</span>
+              </div>
+            </div>
+
+            <ul class="text-[11px] text-slate-400 space-y-1 mb-5">
+              ${c.features.slice(0, 3).map(f => `<li>✓ ${f}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+            <div>
+              <span class="text-[10px] text-slate-500 line-through">₹${c.originalPrice}</span>
+              <div class="text-base font-black text-amber-400 font-mono">₹${c.price}</div>
+            </div>
+            <button onclick="openCheckout('${c.id}')" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all">
+              Buy Card ➔
+            </button>
+          </div>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    // CHECKOUT LOGIC
+    function openCheckout(cardId) {
+      const card = cards.find(c => c.id === cardId);
+      if (!card) return;
+      selectedCheckoutCard = card;
+
+      document.getElementById('checkout-title').textContent = card.title;
+      document.getElementById('checkout-balance').textContent = '₹' + card.balance.toLocaleString('en-IN');
+      document.getElementById('checkout-price').textContent = '₹' + card.price.toLocaleString('en-IN');
+      document.getElementById('checkout-upi-id').textContent = settings.upiId;
+
+      // QR Generation
+      const qrWrapper = document.getElementById('checkout-qr-wrapper');
+      qrWrapper.innerHTML = '';
+
+      if (settings.qrMode === 'custom_image' && settings.customQrImageUrl) {
+        const img = document.createElement('img');
+        img.src = settings.customQrImageUrl;
+        img.className = 'w-full h-full object-contain';
+        qrWrapper.appendChild(img);
+      } else {
+        const upiUri = `upi://pay?pa=${encodeURIComponent(settings.upiId)}&pn=${encodeURIComponent(settings.payeeName)}&am=${card.price}&cu=INR&tn=${encodeURIComponent(settings.upiRemark + '-' + card.id)}`;
+        document.getElementById('checkout-upi-intent').href = upiUri;
+        const canvas = document.createElement('canvas');
+        QRCode.toCanvas(canvas, upiUri, { width: 170, margin: 1 }, (err) => {
+          if (!err) qrWrapper.appendChild(canvas);
+        });
+      }
+
+      openModal('checkout-modal');
+    }
+
+    function copyCurrentUpiId() {
+      navigator.clipboard.writeText(settings.upiId);
+      showToast('UPI ID copied: ' + settings.upiId);
+    }
+
+    function handleOrderSubmit(e) {
+      if (e) {
+        try { e.preventDefault(); if (e.stopPropagation) e.stopPropagation(); } catch (ign) {}
+      }
+      const userName = document.getElementById('order-user-name').value.trim();
+      const contact = document.getElementById('order-contact').value.trim();
+      const utr = document.getElementById('order-utr').value.trim();
+
+      const newOrder = {
+        id: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+        cardId: selectedCheckoutCard.id,
+        cardTitle: selectedCheckoutCard.title,
+        amount: selectedCheckoutCard.price,
+        preloadedBalance: selectedCheckoutCard.balance,
+        utr: utr,
+        userName: userName,
+        userContact: contact,
+        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+        status: 'PENDING',
+        cardDetails: {
+          cardNumber: selectedCheckoutCard.defaultCardNumber,
+          cvv: selectedCheckoutCard.defaultCvv,
+          expiry: selectedCheckoutCard.defaultExpiry,
+          pin: selectedCheckoutCard.defaultPin,
+          cardholder: userName.toUpperCase()
+        }
+      };
+
+      orders.unshift(newOrder);
+      saveState();
+      closeModal('checkout-modal');
+      showToast('⏳ Payment proof submitted (UTR: ' + utr + ')! Awaiting Admin verification.');
+      openOrdersModal();
+      return false;
+    }
+
+    // ORDERS MODAL - SHOWS PENDING/LOCKED UNTIL ADMIN VERIFICATION
+    function openOrdersModal() {
+      const container = document.getElementById('orders-list-container');
+      container.innerHTML = '';
+
+      if (orders.length === 0) {
+        container.innerHTML = '<div class="text-center py-10 text-slate-500 text-xs">No orders yet. Purchase a card from the catalog!</div>';
+      } else {
+        orders.forEach(o => {
+          const isVerified = o.status === 'VERIFIED';
+          const isPending = o.status === 'PENDING';
+          const isRejected = o.status === 'REJECTED';
+
+          const div = document.createElement('div');
+          div.className = `p-4 rounded-2xl border ${
+            isVerified 
+              ? 'border-emerald-500/60 bg-emerald-950/20' 
+              : isPending 
+              ? 'border-amber-600/60 bg-amber-950/25' 
+              : 'border-red-900/60 bg-red-950/20'
+          } text-xs transition-all`;
+
+          div.innerHTML = `
+            <div class="flex justify-between items-start mb-2.5">
+              <div>
+                <span class="font-bold text-white text-sm sm:text-base">${o.cardTitle}</span>
+                <span class="text-[11px] text-slate-400 block font-mono mt-0.5">Order ID: <strong class="text-slate-300">${o.id}</strong> • UTR: <strong class="text-amber-300">${o.utr}</strong></span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full font-black text-[10px] uppercase tracking-wider ${
+                isVerified 
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/50' 
+                  : isPending 
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50 animate-pulse' 
+                  : 'bg-red-500/20 text-red-300 border border-red-500/50'
+              }">
+                ${isVerified ? '✓ VERIFIED & ACTIVE' : isPending ? '⏳ PENDING (ADMIN VERIFY)' : '✕ REJECTED'}
+              </span>
+            </div>
+
+            ${isVerified ? `
+              <!-- UNLOCKED CARD CREDENTIALS (ADMIN HAS VERIFIED) -->
+              <div class="p-3.5 bg-slate-900/95 rounded-xl border border-emerald-500/50 space-y-2.5 mt-3 font-mono">
+                <div class="flex items-center justify-between text-[11px] border-b border-slate-800 pb-1.5 font-sans font-bold text-emerald-400">
+                  <span>✅ PAYMENT VERIFIED • CARD ACTIVE</span>
+                  <span class="text-[10px] text-slate-400">Preloaded: ₹${o.preloadedBalance.toLocaleString('en-IN')}</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-slate-400 text-[11px]">Card Number:</span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-white font-bold text-xs sm:text-sm tracking-widest">${o.cardDetails.cardNumber}</span>
+                    <button type="button" onclick="navigator.clipboard.writeText('${o.cardDetails.cardNumber}'); showToast('Card number copied!');" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-[10px] text-slate-300">Copy</button>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-slate-400 text-[11px]">CVV / Expiry:</span>
+                  <span class="text-amber-300 font-bold text-xs">${o.cardDetails.cvv} • ${o.cardDetails.expiry}</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-slate-400 text-[11px]">ATM / Web PIN:</span>
+                  <span class="text-emerald-400 font-bold text-xs">${o.cardDetails.pin}</span>
+                </div>
+                <div class="flex justify-between items-center text-slate-300">
+                  <span class="text-slate-400 text-[11px]">Cardholder Name:</span>
+                  <span class="text-slate-200 font-bold text-xs">${o.cardDetails.cardholder}</span>
+                </div>
+                <button type="button" onclick="downloadReceipt('${o.id}')" class="w-full mt-2 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-950/50 cursor-pointer">
+                  ⬇️ Download Card Credentials (.TXT)
+                </button>
+              </div>
+            ` : isPending ? `
+              <!-- LOCKED CARD DETAILS (PENDING ADMIN VERIFICATION) -->
+              <div class="p-3.5 bg-[#0e1628] rounded-xl border border-amber-600/40 space-y-2.5 mt-3">
+                <div class="flex items-center gap-2 text-amber-300 font-bold text-xs">
+                  <span>🔒 CARD DETAILS LOCKED • PENDING ADMIN APPROVAL</span>
+                </div>
+
+                <p class="text-[11px] text-slate-300 leading-relaxed">
+                  Aapka payment proof (UTR: <strong class="text-amber-300 font-mono">${o.utr}</strong>) submit ho chuka hai. 
+                  <strong class="text-white">Jab tak Admin payment verify nahi karega, tab tak card details PENDING rahegi aur locked rahegi.</strong>
+                </p>
+
+                <!-- Masked / Locked Card Preview -->
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 space-y-1.5 font-mono text-slate-500 select-none">
+                  <div class="flex justify-between">
+                    <span class="text-[11px]">Card Number:</span>
+                    <span class="text-amber-400/80 font-bold text-xs tracking-wider">•••• •••• •••• •••• [LOCKED]</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-[11px]">CVV / Expiry:</span>
+                    <span class="text-slate-400">••• • ••/••</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-[11px]">PIN:</span>
+                    <span class="text-slate-400">••••</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-2 pt-1">
+                  <button type="button" disabled class="w-full sm:w-auto flex-1 py-2 px-3 rounded-xl bg-slate-800/80 text-slate-400 font-bold text-xs cursor-not-allowed border border-slate-700">
+                    🔒 Waiting for Admin Approval
+                  </button>
+                  <a href="${settings.telegramUrl}" target="_blank" class="w-full sm:w-auto py-2 px-3.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs text-center flex items-center justify-center gap-1">
+                    <span>Message Admin on Telegram ➔</span>
+                  </a>
+                </div>
+              </div>
+            ` : `
+              <!-- REJECTED STATE -->
+              <div class="p-3 bg-red-950/40 rounded-xl border border-red-800 text-xs text-red-200 mt-2">
+                ❌ Payment Verification Failed for UTR: ${o.utr}. Please contact support via Telegram.
+              </div>
+            `}
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      openModal('orders-modal');
+    }
+
+    function downloadReceipt(orderId) {
+      const order = orders.find(o => o.id === orderId);
+      if (!order) return;
+      const text = `========================================
+BLACK CARD MARKET - VIRTUAL CARD CREDENTIALS
+========================================
+Order ID: ${order.id}
+Date: ${order.timestamp}
+Card: ${order.cardTitle}
+Limit: ₹${order.preloadedBalance}
+Amount Paid: ₹${order.amount}
+UTR Ref: ${order.utr}
+Status: VERIFIED
+
+--- SENSITIVE CARD DETAILS ---
+Cardholder: ${order.cardDetails.cardholder}
+Card Number: ${order.cardDetails.cardNumber}
+CVV: ${order.cardDetails.cvv}
+Expiry: ${order.cardDetails.expiry}
+PIN: ${order.cardDetails.pin}
+
+Support Telegram: ${settings.telegramHandle}
+Support Direct: ${settings.telegramUrl}
+========================================`;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${order.id}-card-credentials.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = '🔒';
+      } else {
+        input.type = 'password';
+        btn.textContent = '👁️';
+      }
+    }
+
+    // ADMIN CONTROL
+    function openAdminLoginModal() {
+      const pwdInput = document.getElementById('admin-login-password');
+      if (pwdInput) {
+        pwdInput.value = '';
+        pwdInput.type = 'password';
+      }
+      const err = document.getElementById('admin-login-error');
+      if (err) err.classList.add('hidden');
+      openModal('admin-login-modal');
+    }
+
+    function handleAdminLogin(e) {
+      if (e) {
+        try {
+          e.preventDefault();
+          if (e.stopPropagation) e.stopPropagation();
+        } catch (ign) {}
+      }
+
+      const pwdInput = document.getElementById('admin-login-password');
+      if (!pwdInput) return false;
+
+      const pwd = pwdInput.value.trim();
+      const err = document.getElementById('admin-login-error');
+
+      // Dismiss mobile keyboard to avoid viewport layout jumps
+      try {
+        pwdInput.blur();
+      } catch (ign) {}
+
+      const masterPass = (settings.adminPassword || 'RAJAJI').trim();
+      const isMatch =
+        pwd.toUpperCase() === 'RAJAJI' ||
+        pwd.toLowerCase() === masterPass.toLowerCase() ||
+        pwd === masterPass;
+
+      if (isMatch) {
+        if (err) err.classList.add('hidden');
+        try {
+          openAdminDashboard();
+        } catch (dashErr) {
+          console.error('Error in openAdminDashboard:', dashErr);
+          openModal('admin-dashboard-modal');
+        }
+        closeModal('admin-login-modal');
+        showToast('🔓 Admin Dashboard Unlocked');
+      } else {
+        if (err) {
+          err.textContent = '❌ Incorrect password. (Master password is RAJAJI)';
+          err.classList.remove('hidden');
+        }
+      }
+      return false;
+    }
+
+    function openAdminDashboard() {
+      try {
+        const upiEl = document.getElementById('admin-upi-id');
+        if (upiEl) upiEl.value = settings.upiId || '';
+
+        const payeeEl = document.getElementById('admin-payee-name');
+        if (payeeEl) payeeEl.value = settings.payeeName || '';
+
+        const qrModeEl = document.getElementById('admin-qr-mode');
+        if (qrModeEl) qrModeEl.value = settings.qrMode || 'auto_upi';
+
+        const tgEl = document.getElementById('admin-tg-handle');
+        if (tgEl) tgEl.value = settings.telegramHandle || '';
+
+        const tgUrlEl = document.getElementById('admin-tg-url');
+        if (tgUrlEl) tgUrlEl.value = settings.telegramUrl || '';
+
+        const emailEl = document.getElementById('admin-support-email');
+        if (emailEl) emailEl.value = settings.supportEmail || '';
+
+        const phoneEl = document.getElementById('admin-support-phone');
+        if (phoneEl) phoneEl.value = settings.supportPhone || '';
+
+        const noticeEl = document.getElementById('admin-support-notice');
+        if (noticeEl) noticeEl.value = settings.supportNotice || '';
+
+        const autoEl = document.getElementById('admin-auto-mode');
+        if (autoEl) autoEl.checked = !!settings.autoApprovalMode;
+
+        toggleAdminQrMode();
+        renderAdminOrders();
+        renderAdminCards();
+        setAdminTab('QR_UPI');
+      } catch (err) {
+        console.error('Non-critical error populating dashboard inputs:', err);
+      }
+      openModal('admin-dashboard-modal');
+    }
+
+    function setAdminTab(tabName) {
+      document.querySelectorAll('.atab').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-black');
+        b.classList.add('bg-slate-900', 'text-slate-300');
+      });
+      document.getElementById('atab-' + tabName).classList.add('bg-amber-500', 'text-black');
+      document.getElementById('atab-' + tabName).classList.remove('bg-slate-900', 'text-slate-300');
+
+      ['PAYMENTS', 'QR_UPI', 'SUPPORT_TG', 'CARDS', 'SECURITY'].forEach(t => {
+        document.getElementById('admin-sec-' + t).classList.add('hidden');
+      });
+      document.getElementById('admin-sec-' + tabName).classList.remove('hidden');
+    }
+
+    function renderAdminOrders() {
+      const table = document.getElementById('admin-orders-table');
+      table.innerHTML = '';
+      if (orders.length === 0) {
+        table.innerHTML = '<div class="text-slate-500 text-xs py-4 text-center">No orders recorded yet.</div>';
+        return;
+      }
+      orders.forEach(o => {
+        const isVerified = o.status === 'VERIFIED';
+        const div = document.createElement('div');
+        div.className = 'p-3 bg-[#0c1220] rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs';
+        div.innerHTML = `
+          <div>
+            <div class="font-bold text-white">${o.cardTitle} - ₹${o.amount}</div>
+            <div class="text-slate-400 text-[11px]">Customer: ${o.userName} (${o.userContact})</div>
+            <div class="text-amber-400 font-mono font-bold text-[11px]">UTR: ${o.utr} • Status: ${o.status}</div>
+          </div>
+          <div class="flex items-center gap-2">
+            ${!isVerified ? `
+              <button onclick="adminVerifyOrder('${o.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">Approve</button>
+              <button onclick="adminRejectOrder('${o.id}')" class="px-3 py-1.5 rounded-lg bg-red-800 hover:bg-red-700 text-white font-bold">Reject</button>
+            ` : `
+              <span class="text-emerald-400 font-bold">✓ Approved</span>
+            `}
+          </div>
+        `;
+        table.appendChild(div);
+      });
+    }
+
+    function adminVerifyOrder(orderId) {
+      const order = orders.find(o => o.id === orderId);
+      if (order) {
+        order.status = 'VERIFIED';
+        saveState();
+        renderAdminOrders();
+        triggerConfetti({ particleCount: 70, spread: 80 });
+        showToast('Order ' + orderId + ' verified successfully!');
+      }
+    }
+
+    function adminRejectOrder(orderId) {
+      const order = orders.find(o => o.id === orderId);
+      if (order) {
+        order.status = 'REJECTED';
+        saveState();
+        renderAdminOrders();
+        showToast('Order ' + orderId + ' rejected.');
+      }
+    }
+
+    function adminVerifyAllPending() {
+      orders.forEach(o => {
+        if (o.status === 'PENDING') o.status = 'VERIFIED';
+      });
+      saveState();
+      renderAdminOrders();
+      triggerConfetti({ particleCount: 100, spread: 90 });
+      showToast('All pending orders verified!');
+    }
+
+    function adminResetToAutoQr() {
+      settings.customQrImageUrl = '';
+      settings.qrMode = 'auto_upi';
+      const modeEl = document.getElementById('admin-qr-mode');
+      if (modeEl) modeEl.value = 'auto_upi';
+      const fileEl = document.getElementById('admin-qr-file');
+      if (fileEl) fileEl.value = '';
+      toggleAdminQrMode();
+      saveState();
+      showToast('Reset to Dynamic Auto UPI QR!');
+    }
+
+    function toggleAdminQrMode() {
+      const mode = document.getElementById('admin-qr-mode')?.value || settings.qrMode;
+      const statusText = document.getElementById('admin-qr-status-text');
+      if (statusText) {
+        if (mode === 'custom_image' && settings.customQrImageUrl) {
+          statusText.textContent = 'Mode: Custom Merchant QR Active';
+          statusText.className = 'text-[11px] text-amber-300 font-bold';
+        } else {
+          statusText.textContent = 'Mode: Auto Dynamic UPI QR';
+          statusText.className = 'text-[11px] text-emerald-400 font-bold';
+        }
+      }
+      renderAdminQrPreview();
+    }
+
+    function handleAdminQrFile(e) {
+      const file = e.target?.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          settings.customQrImageUrl = reader.result;
+          settings.qrMode = 'custom_image';
+          const modeEl = document.getElementById('admin-qr-mode');
+          if (modeEl) modeEl.value = 'custom_image';
+          toggleAdminQrMode();
+          saveState();
+          showToast('✅ New QR Code Image Loaded!');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function renderAdminQrPreview() {
+      try {
+        const box = document.getElementById('admin-qr-preview-box');
+        if (!box) return;
+        box.innerHTML = '';
+        const mode = document.getElementById('admin-qr-mode')?.value || settings.qrMode;
+        if (mode === 'custom_image' && settings.customQrImageUrl) {
+          const img = document.createElement('img');
+          img.src = settings.customQrImageUrl;
+          img.className = 'w-full h-full object-contain';
+          box.appendChild(img);
+        } else if (typeof QRCode !== 'undefined' && QRCode.toCanvas) {
+          const curUpi = document.getElementById('admin-upi-id')?.value.trim() || settings.upiId;
+          const curPayee = document.getElementById('admin-payee-name')?.value.trim() || settings.payeeName;
+          const uri = `upi://pay?pa=${encodeURIComponent(curUpi)}&pn=${encodeURIComponent(curPayee)}`;
+          const canvas = document.createElement('canvas');
+          QRCode.toCanvas(canvas, uri, { width: 160, margin: 1 }, (err) => {
+            if (!err && box) box.appendChild(canvas);
+          });
+        } else {
+          box.innerHTML = '<div class="text-xs text-slate-700 font-bold p-2 text-center">QR Code Ready</div>';
+        }
+      } catch (err) {
+        console.warn('QR render error:', err);
+      }
+    }
+
+    function saveUpiSettings(e) {
+      e.preventDefault();
+      settings.upiId = document.getElementById('admin-upi-id').value.trim();
+      settings.payeeName = document.getElementById('admin-payee-name').value.trim();
+      settings.qrMode = document.getElementById('admin-qr-mode').value;
+      saveState();
+      showToast('UPI & QR settings updated!');
+    }
+
+    function saveSupportSettings(e) {
+      e.preventDefault();
+      settings.telegramHandle = document.getElementById('admin-tg-handle').value.trim();
+      settings.telegramUrl = document.getElementById('admin-tg-url').value.trim();
+      settings.supportEmail = document.getElementById('admin-support-email').value.trim();
+      settings.supportPhone = document.getElementById('admin-support-phone').value.trim();
+      settings.supportNotice = document.getElementById('admin-support-notice').value.trim();
+      saveState();
+      showToast('Support & Telegram details updated!');
+    }
+
+    function saveSecuritySettings(e) {
+      e.preventDefault();
+      const newPwd = document.getElementById('admin-new-password').value.trim();
+      if (newPwd.length >= 4) {
+        settings.adminPassword = newPwd;
+        document.getElementById('admin-new-password').value = '';
+      }
+      settings.autoApprovalMode = document.getElementById('admin-auto-mode').checked;
+      saveState();
+      showToast('Security settings saved!');
+    }
+
+    function renderAdminCards() {
+      const list = document.getElementById('admin-cards-list');
+      list.innerHTML = '';
+      cards.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'p-3 bg-[#0c1220] rounded-xl border border-slate-800 flex justify-between items-center text-xs';
+        div.innerHTML = `
+          <div>
+            <div class="font-bold text-white">${c.title}</div>
+            <div class="text-slate-400 text-[11px] font-mono">₹${c.price} (Balance: ₹${c.balance})</div>
+          </div>
+          <button onclick="adminDeleteCard('${c.id}')" class="text-red-400 hover:text-red-300 text-xs font-bold">Delete</button>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function adminDeleteCard(id) {
+      if (confirm('Delete this card from catalog?')) {
+        cards = cards.filter(c => c.id !== id);
+        saveState();
+        renderAdminCards();
+        renderCards();
+        showToast('Card removed.');
+      }
+    }
+
+    // GENERAL MODAL HELPERS
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    // INITIAL BOOT
+    syncUiSettings();
+    renderCards();
+  </script>
+</body>
+</html>

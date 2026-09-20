@@ -1,0 +1,6 @@
+{
+  "name": "Black Card Market",
+  "description": "Premium virtual debit and credit card marketplace with real-time UPI QR payments, automated escrow verification, order tracking, and custom admin controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
